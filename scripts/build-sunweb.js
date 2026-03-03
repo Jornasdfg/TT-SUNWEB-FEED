@@ -8,38 +8,45 @@ function ensureDir(p) {
 
 function fetchUrl(url, redirectsLeft = 5) {
   return new Promise((resolve, reject) => {
-    https
-      .get(url, (res) => {
-        if (
-          res.statusCode >= 300 &&
-          res.statusCode < 400 &&
-          res.headers.location &&
-          redirectsLeft > 0
-        ) {
-          const next = res.headers.location.startsWith("http")
-            ? res.headers.location
-            : new URL(res.headers.location, url).toString();
-          res.resume();
-          return resolve(fetchUrl(next, redirectsLeft - 1));
-        }
+    https.get(url, (res) => {
+      if (
+        res.statusCode >= 300 &&
+        res.statusCode < 400 &&
+        res.headers.location &&
+        redirectsLeft > 0
+      ) {
+        const next = res.headers.location.startsWith("http")
+          ? res.headers.location
+          : new URL(res.headers.location, url).toString();
+        res.resume();
+        return resolve(fetchUrl(next, redirectsLeft - 1));
+      }
 
-        if (res.statusCode >= 400) {
-          res.resume();
-          return reject(new Error(`HTTP ${res.statusCode}`));
-        }
+      if (res.statusCode >= 400) {
+        res.resume();
+        return reject(new Error(`HTTP ${res.statusCode}`));
+      }
 
-        let data = "";
-        res.setEncoding("utf8");
-        res.on("data", (c) => (data += c));
-        res.on("end", () => resolve(data));
-      })
-      .on("error", reject);
+      let data = "";
+      res.setEncoding("utf8");
+      res.on("data", (c) => (data += c));
+      res.on("end", () => resolve(data));
+    }).on("error", reject);
   });
 }
 
-function first(arrOrVal) {
-  if (Array.isArray(arrOrVal)) return arrOrVal[0] || "";
-  return arrOrVal || "";
+function extractItems(json) {
+  if (Array.isArray(json)) return json;
+  if (Array.isArray(json?.products)) return json.products;
+  if (Array.isArray(json?.items)) return json.items;
+  if (Array.isArray(json?.data)) return json.data;
+  if (Array.isArray(json?.productFeed?.products)) return json.productFeed.products;
+  return [];
+}
+
+function first(val) {
+  if (Array.isArray(val)) return val[0] || "";
+  return val || "";
 }
 
 function toNumber(v) {
@@ -64,70 +71,50 @@ function pickBanner(p) {
   return "";
 }
 
-// Probeer items te vinden, ongeacht top-level structuur
-function extractItems(json) {
-  if (Array.isArray(json)) return json;
-
-  if (Array.isArray(json?.products)) return json.products;
-  if (Array.isArray(json?.items)) return json.items;
-  if (Array.isArray(json?.data)) return json.data;
-
-  if (json?.productFeed) {
-    if (Array.isArray(json.productFeed)) return json.productFeed;
-    if (Array.isArray(json.productFeed.products)) return json.productFeed.products;
-    if (Array.isArray(json.productFeed.items)) return json.productFeed.items;
-  }
-
-  return [];
-}
-
-(async () => {
-  const url = process.env.TT_FEED_URL;
-  if (!url) {
-    console.error("Missing TT_FEED_URL secret");
-    process.exit(1);
-  }
-
-  console.log("Downloading Sunweb JSON feed...");
+async function fetchFeed(label, url) {
+  if (!url) return [];
+  console.log("Downloading:", label);
   const raw = await fetchUrl(url);
 
   let json;
   try {
     json = JSON.parse(raw);
   } catch (e) {
-    console.error("Not valid JSON. First 200 chars:");
-    console.error(raw.slice(0, 200));
-    process.exit(1);
+    console.error("JSON parse error in", label);
+    return [];
   }
 
   const items = extractItems(json);
-  if (!Array.isArray(items) || items.length === 0) {
-    console.error("No items found. Top-level keys:", Object.keys(json || {}));
-    process.exit(1);
+  console.log("Items in", label + ":", items.length);
+  return items;
+}
+
+(async () => {
+  const feeds = [
+    { label: "general", url: process.env.TT_FEED_URL },
+    { label: "turkije", url: process.env.TT_FEED_URL_TURKIJE },
+    { label: "spanje", url: process.env.TT_FEED_URL_SPANJE },
+    { label: "griekenland", url: process.env.TT_FEED_URL_GRIEKENLAND },
+    { label: "egypte", url: process.env.TT_FEED_URL_EGYPTE },
+  ];
+
+  let rawItems = [];
+
+  for (const f of feeds) {
+    const items = await fetchFeed(f.label, f.url);
+    rawItems = rawItems.concat(items);
   }
 
-  console.log("Items:", items.length);
+  console.log("Total raw items:", rawItems.length);
 
-  // Land caps (pas aan als je wil)
-  const COUNTRY_PRICE_CAPS = {
-    Spanje: 600,
-    Griekenland: 650,
-    Turkije: 700,
-    Portugal: 650,
-    "Italië": 650,
-    Egypte: 800,
-  };
-  const DEFAULT_CAP = 700;
-
-  // Maak thin data
-  const thin = items
+  // Thin mapping
+  const thinAll = rawItems
     .map((p) => {
       const props = p.properties || {};
 
       const id = String(p.ID || p.id || p.productID || p.productId || "").trim();
-      const title = String(p.name || p.title || p.productName || "").trim();
+      const title = String(p.name || p.title || "").trim();
 
-      // prijs kan op meerdere plekken zitten
       const price =
         toNumber(p?.price?.amount) ??
         toNumber(p?.price) ??
@@ -137,16 +124,15 @@ function extractItems(json) {
 
       const currency = String(p?.price?.currency || p.currency || "EUR");
 
-      const link = String(p.URL || p.url || p.deeplink || p.productUrl || p.link || "").trim();
+      const link = String(p.URL || p.url || p.deeplink || p.link || "").trim();
       const banner = pickBanner(p);
 
       const country = String(first(props.country) || p.country || "").trim();
-      const departure = String(first(props.iataDeparture) || props.iataDeparture || p.departure || "").trim();
-      const departureDate = String(first(props.departureDate) || props.departureDate || p.departureDate || "").trim();
-      const duration = toNumber(first(props.duration) || props.duration || p.duration);
+      const departure = String(first(props.iataDeparture) || "").trim();
+      const departureDate = String(first(props.departureDate) || "").trim();
+      const duration = toNumber(first(props.duration));
 
-      // Extra velden, als ze bestaan bij Sunweb
-      const stars = String(first(props.stars) || p.stars || "").trim();
+      const stars = String(first(props.stars) || "").trim();
       const province = String(first(props.province) || "").trim();
       const region = String(first(props.region) || "").trim();
       const serviceType = String(first(props.serviceType) || "").trim();
@@ -168,53 +154,80 @@ function extractItems(json) {
         banner,
       };
     })
-    .filter((x) => x.id && x.url);
+    .filter((x) => x.url);
+
+  // Deduplicate
+  const seen = new Set();
+  const thin = [];
+
+  for (const item of thinAll) {
+    const key = item.id ? "id:" + item.id : "url:" + item.url;
+    if (!seen.has(key)) {
+      seen.add(key);
+      thin.push(item);
+    }
+  }
+
+  console.log("After dedupe:", thin.length);
 
   thin.sort((a, b) => (a.price ?? 99999999) - (b.price ?? 99999999));
 
+  const COUNTRY_PRICE_CAPS = {
+    Spanje: 600,
+    Griekenland: 650,
+    Turkije: 700,
+    Egypte: 800,
+  };
+
+  const DEFAULT_CAP = 700;
+
   const outBase = path.join(process.cwd(), "public", "sunweb");
   const outCountryDir = path.join(outBase, "country");
+
   ensureDir(outBase);
   ensureDir(outCountryDir);
 
   fs.writeFileSync(path.join(outBase, "all.min.json"), JSON.stringify(thin));
 
-  const byCountry = new Map();
-  for (const p of thin) {
-    const c = p.country || "Onbekend";
-    if (!byCountry.has(c)) byCountry.set(c, []);
-    byCountry.get(c).push(p);
-  }
+  const byCountry = {};
 
-  const countryIndex = {
+  thin.forEach((p) => {
+    const c = p.country || "Onbekend";
+    if (!byCountry[c]) byCountry[c] = [];
+    byCountry[c].push(p);
+  });
+
+  const index = {
     last_updated: new Date().toISOString(),
-    caps: { ...COUNTRY_PRICE_CAPS, __default: DEFAULT_CAP },
     countries: {},
-    files: {
-      all_min: "sunweb/all.min.json",
-      country_index: "sunweb/country/index.json",
-    },
   };
 
-  for (const [countryName, list] of byCountry.entries()) {
-    const cap = COUNTRY_PRICE_CAPS[countryName] ?? DEFAULT_CAP;
+  for (const country in byCountry) {
+    const cap = COUNTRY_PRICE_CAPS[country] ?? DEFAULT_CAP;
 
-    const filtered = list
+    const filtered = byCountry[country]
       .filter((x) => x.price !== null && x.price <= cap)
       .sort((a, b) => (a.price ?? 99999999) - (b.price ?? 99999999));
 
-    const fileName = `${slugify(countryName)}_under_${cap}.json`;
-    fs.writeFileSync(path.join(outCountryDir, fileName), JSON.stringify(filtered));
+    const fileName = `${slugify(country)}_under_${cap}.json`;
 
-    countryIndex.countries[countryName] = {
+    fs.writeFileSync(
+      path.join(outCountryDir, fileName),
+      JSON.stringify(filtered)
+    );
+
+    index.countries[country] = {
       cap,
-      total: list.length,
+      total: byCountry[country].length,
       under_cap: filtered.length,
       file: `sunweb/country/${fileName}`,
     };
   }
 
-  fs.writeFileSync(path.join(outCountryDir, "index.json"), JSON.stringify(countryIndex, null, 2));
+  fs.writeFileSync(
+    path.join(outCountryDir, "index.json"),
+    JSON.stringify(index, null, 2)
+  );
 
-  console.log("Done. Wrote public/sunweb/*.json");
+  console.log("Sunweb build completed.");
 })();
