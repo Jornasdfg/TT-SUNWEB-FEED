@@ -12,6 +12,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,6 +25,10 @@ jobs:
       - name: Build feeds
         env:
           TT_FEED_URL: ${{ secrets.TT_FEED_URL }}
+          TT_FEED_URL_TURKIJE: ${{ secrets.TT_FEED_URL_TURKIJE }}
+          TT_FEED_URL_SPANJE: ${{ secrets.TT_FEED_URL_SPANJE }}
+          TT_FEED_URL_GRIEKENLAND: ${{ secrets.TT_FEED_URL_GRIEKENLAND }}
+          TT_FEED_URL_EGYPTE: ${{ secrets.TT_FEED_URL_EGYPTE }}
         run: node scripts/build-sunweb.js
 
       - name: Commit and push
