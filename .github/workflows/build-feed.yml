@@ -1,0 +1,35 @@
+name: Build Sunweb JSON feed
+
+on:
+  schedule:
+    # Maandag en donderdag 05:15 UTC (ongeveer 06:15 NL)
+    - cron: "15 5 * * 1,4"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build feeds
+        env:
+          TT_FEED_URL: ${{ secrets.TT_FEED_URL }}
+        run: node scripts/build-sunweb.js
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add public
+          git commit -m "Update feeds" || echo "No changes"
+          git push
