@@ -1,41 +1,41 @@
 {
-  "last_updated": "2026-05-14T08:04:02.360Z",
+  "last_updated": "2026-05-18T08:52:41.404Z",
   "countries": {
     "Griekenland": {
       "cap": 650,
-      "total": 859,
-      "under_cap": 480,
+      "total": 858,
+      "under_cap": 465,
       "file": "sunweb/country/griekenland_under_650.json"
-    },
-    "Spanje": {
-      "cap": 600,
-      "total": 653,
-      "under_cap": 296,
-      "file": "sunweb/country/spanje_under_600.json"
     },
     "Turkije": {
       "cap": 700,
       "total": 398,
-      "under_cap": 254,
+      "under_cap": 240,
       "file": "sunweb/country/turkije_under_700.json"
+    },
+    "Spanje": {
+      "cap": 600,
+      "total": 654,
+      "under_cap": 291,
+      "file": "sunweb/country/spanje_under_600.json"
     },
     "Portugal": {
       "cap": 700,
-      "total": 157,
-      "under_cap": 111,
+      "total": 158,
+      "under_cap": 106,
       "file": "sunweb/country/portugal_under_700.json"
+    },
+    "Bulgarije": {
+      "cap": 700,
+      "total": 29,
+      "under_cap": 14,
+      "file": "sunweb/country/bulgarije_under_700.json"
     },
     "Cyprus": {
       "cap": 700,
       "total": 53,
       "under_cap": 15,
       "file": "sunweb/country/cyprus_under_700.json"
-    },
-    "Bulgarije": {
-      "cap": 700,
-      "total": 29,
-      "under_cap": 13,
-      "file": "sunweb/country/bulgarije_under_700.json"
     },
     "Italië": {
       "cap": 700,
@@ -46,7 +46,7 @@
     "Tunesië": {
       "cap": 700,
       "total": 61,
-      "under_cap": 43,
+      "under_cap": 40,
       "file": "sunweb/country/tunesi_under_700.json"
     },
     "Egypte": {
