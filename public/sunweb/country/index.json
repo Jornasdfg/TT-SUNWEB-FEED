@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-01T10:31:03.776Z",
+  "last_updated": "2026-06-04T09:00:31.420Z",
   "countries": {
     "Griekenland": {
       "cap": 650,
@@ -9,26 +9,26 @@
     },
     "Spanje": {
       "cap": 600,
-      "total": 652,
-      "under_cap": 295,
+      "total": 651,
+      "under_cap": 287,
       "file": "sunweb/country/spanje_under_600.json"
     },
     "Turkije": {
       "cap": 700,
       "total": 398,
-      "under_cap": 236,
+      "under_cap": 232,
       "file": "sunweb/country/turkije_under_700.json"
     },
     "Portugal": {
       "cap": 700,
       "total": 158,
-      "under_cap": 113,
+      "under_cap": 108,
       "file": "sunweb/country/portugal_under_700.json"
     },
     "Bulgarije": {
       "cap": 700,
       "total": 30,
-      "under_cap": 16,
+      "under_cap": 18,
       "file": "sunweb/country/bulgarije_under_700.json"
     },
     "Cyprus": {
