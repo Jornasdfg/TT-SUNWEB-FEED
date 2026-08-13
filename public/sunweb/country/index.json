@@ -1,16 +1,16 @@
 {
-  "last_updated": "2026-08-10T06:42:15.220Z",
+  "last_updated": "2026-08-13T06:45:10.965Z",
   "countries": {
     "Griekenland": {
       "cap": 650,
-      "total": 848,
+      "total": 847,
       "under_cap": 526,
       "file": "sunweb/country/griekenland_under_650.json"
     },
     "Spanje": {
       "cap": 600,
-      "total": 658,
-      "under_cap": 326,
+      "total": 659,
+      "under_cap": 327,
       "file": "sunweb/country/spanje_under_600.json"
     },
     "Portugal": {
