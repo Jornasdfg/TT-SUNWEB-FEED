@@ -1,35 +1,41 @@
 {
-  "last_updated": "2026-08-24T05:54:19.462Z",
+  "last_updated": "2026-08-27T16:31:10.088Z",
   "countries": {
     "Griekenland": {
       "cap": 650,
-      "total": 843,
-      "under_cap": 505,
+      "total": 849,
+      "under_cap": 526,
       "file": "sunweb/country/griekenland_under_650.json"
     },
     "Spanje": {
       "cap": 600,
-      "total": 654,
-      "under_cap": 315,
+      "total": 652,
+      "under_cap": 322,
       "file": "sunweb/country/spanje_under_600.json"
+    },
+    "Portugal": {
+      "cap": 700,
+      "total": 159,
+      "under_cap": 114,
+      "file": "sunweb/country/portugal_under_700.json"
     },
     "Turkije": {
       "cap": 700,
       "total": 392,
-      "under_cap": 240,
+      "under_cap": 241,
       "file": "sunweb/country/turkije_under_700.json"
-    },
-    "Portugal": {
-      "cap": 700,
-      "total": 161,
-      "under_cap": 115,
-      "file": "sunweb/country/portugal_under_700.json"
     },
     "Cyprus": {
       "cap": 700,
       "total": 53,
-      "under_cap": 13,
+      "under_cap": 12,
       "file": "sunweb/country/cyprus_under_700.json"
+    },
+    "Tunesië": {
+      "cap": 700,
+      "total": 59,
+      "under_cap": 40,
+      "file": "sunweb/country/tunesi_under_700.json"
     },
     "Italië": {
       "cap": 700,
@@ -37,28 +43,22 @@
       "under_cap": 15,
       "file": "sunweb/country/itali_under_700.json"
     },
-    "Bulgarije": {
-      "cap": 700,
-      "total": 32,
-      "under_cap": 9,
-      "file": "sunweb/country/bulgarije_under_700.json"
-    },
-    "Tunesië": {
-      "cap": 700,
-      "total": 59,
-      "under_cap": 28,
-      "file": "sunweb/country/tunesi_under_700.json"
-    },
     "Egypte": {
       "cap": 800,
       "total": 68,
-      "under_cap": 61,
+      "under_cap": 62,
       "file": "sunweb/country/egypte_under_800.json"
+    },
+    "Bulgarije": {
+      "cap": 700,
+      "total": 32,
+      "under_cap": 8,
+      "file": "sunweb/country/bulgarije_under_700.json"
     },
     "Kaapverdië": {
       "cap": 700,
       "total": 7,
-      "under_cap": 3,
+      "under_cap": 2,
       "file": "sunweb/country/kaapverdi_under_700.json"
     }
   }
