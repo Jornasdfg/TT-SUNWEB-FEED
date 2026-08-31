@@ -1,28 +1,28 @@
 {
-  "last_updated": "2026-08-27T16:31:10.088Z",
+  "last_updated": "2026-08-31T11:36:17.297Z",
   "countries": {
     "Griekenland": {
       "cap": 650,
-      "total": 849,
-      "under_cap": 526,
+      "total": 845,
+      "under_cap": 517,
       "file": "sunweb/country/griekenland_under_650.json"
     },
     "Spanje": {
       "cap": 600,
-      "total": 652,
-      "under_cap": 322,
+      "total": 654,
+      "under_cap": 327,
       "file": "sunweb/country/spanje_under_600.json"
     },
     "Portugal": {
       "cap": 700,
       "total": 159,
-      "under_cap": 114,
+      "under_cap": 115,
       "file": "sunweb/country/portugal_under_700.json"
     },
     "Turkije": {
       "cap": 700,
-      "total": 392,
-      "under_cap": 241,
+      "total": 396,
+      "under_cap": 256,
       "file": "sunweb/country/turkije_under_700.json"
     },
     "Cyprus": {
@@ -31,35 +31,35 @@
       "under_cap": 12,
       "file": "sunweb/country/cyprus_under_700.json"
     },
-    "Tunesië": {
-      "cap": 700,
-      "total": 59,
-      "under_cap": 40,
-      "file": "sunweb/country/tunesi_under_700.json"
-    },
     "Italië": {
       "cap": 700,
       "total": 23,
       "under_cap": 15,
       "file": "sunweb/country/itali_under_700.json"
     },
+    "Tunesië": {
+      "cap": 700,
+      "total": 57,
+      "under_cap": 41,
+      "file": "sunweb/country/tunesi_under_700.json"
+    },
     "Egypte": {
       "cap": 800,
       "total": 68,
-      "under_cap": 62,
+      "under_cap": 61,
       "file": "sunweb/country/egypte_under_800.json"
-    },
-    "Bulgarije": {
-      "cap": 700,
-      "total": 32,
-      "under_cap": 8,
-      "file": "sunweb/country/bulgarije_under_700.json"
     },
     "Kaapverdië": {
       "cap": 700,
       "total": 7,
       "under_cap": 2,
       "file": "sunweb/country/kaapverdi_under_700.json"
+    },
+    "Bulgarije": {
+      "cap": 700,
+      "total": 30,
+      "under_cap": 8,
+      "file": "sunweb/country/bulgarije_under_700.json"
     }
   }
 }
