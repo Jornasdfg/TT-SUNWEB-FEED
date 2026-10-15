@@ -1,16 +1,16 @@
 {
-  "last_updated": "2026-10-12T13:10:56.601Z",
+  "last_updated": "2026-10-15T09:55:17.510Z",
   "countries": {
     "Spanje": {
       "cap": 600,
-      "total": 609,
-      "under_cap": 288,
+      "total": 601,
+      "under_cap": 303,
       "file": "sunweb/country/spanje_under_600.json"
     },
     "Griekenland": {
       "cap": 650,
-      "total": 765,
-      "under_cap": 505,
+      "total": 753,
+      "under_cap": 506,
       "file": "sunweb/country/griekenland_under_650.json"
     },
     "Portugal": {
@@ -21,38 +21,44 @@
     },
     "Turkije": {
       "cap": 700,
-      "total": 398,
-      "under_cap": 268,
+      "total": 392,
+      "under_cap": 274,
       "file": "sunweb/country/turkije_under_700.json"
     },
     "Marokko": {
       "cap": 700,
       "total": 8,
-      "under_cap": 4,
+      "under_cap": 3,
       "file": "sunweb/country/marokko_under_700.json"
     },
     "Cyprus": {
       "cap": 700,
       "total": 51,
-      "under_cap": 19,
+      "under_cap": 24,
       "file": "sunweb/country/cyprus_under_700.json"
     },
     "Italië": {
       "cap": 700,
-      "total": 21,
-      "under_cap": 12,
+      "total": 22,
+      "under_cap": 11,
       "file": "sunweb/country/itali_under_700.json"
+    },
+    "Bulgarije": {
+      "cap": 700,
+      "total": 26,
+      "under_cap": 9,
+      "file": "sunweb/country/bulgarije_under_700.json"
     },
     "Egypte": {
       "cap": 800,
       "total": 69,
-      "under_cap": 56,
+      "under_cap": 51,
       "file": "sunweb/country/egypte_under_800.json"
     },
     "Tunesië": {
       "cap": 700,
-      "total": 51,
-      "under_cap": 30,
+      "total": 52,
+      "under_cap": 37,
       "file": "sunweb/country/tunesi_under_700.json"
     },
     "Kaapverdië": {
@@ -60,12 +66,6 @@
       "total": 7,
       "under_cap": 1,
       "file": "sunweb/country/kaapverdi_under_700.json"
-    },
-    "Bulgarije": {
-      "cap": 700,
-      "total": 23,
-      "under_cap": 7,
-      "file": "sunweb/country/bulgarije_under_700.json"
     }
   }
 }
