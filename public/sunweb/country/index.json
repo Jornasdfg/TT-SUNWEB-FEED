@@ -1,40 +1,40 @@
 {
-  "last_updated": "2026-10-26T11:07:32.276Z",
+  "last_updated": "2026-10-29T11:31:10.386Z",
   "countries": {
-    "Griekenland": {
-      "cap": 650,
-      "total": 667,
-      "under_cap": 521,
-      "file": "sunweb/country/griekenland_under_650.json"
-    },
     "Spanje": {
       "cap": 600,
-      "total": 531,
-      "under_cap": 285,
+      "total": 552,
+      "under_cap": 302,
       "file": "sunweb/country/spanje_under_600.json"
     },
     "Portugal": {
       "cap": 700,
       "total": 141,
-      "under_cap": 113,
+      "under_cap": 112,
       "file": "sunweb/country/portugal_under_700.json"
+    },
+    "Griekenland": {
+      "cap": 650,
+      "total": 679,
+      "under_cap": 514,
+      "file": "sunweb/country/griekenland_under_650.json"
     },
     "Turkije": {
       "cap": 700,
-      "total": 368,
-      "under_cap": 286,
+      "total": 364,
+      "under_cap": 278,
       "file": "sunweb/country/turkije_under_700.json"
     },
     "Marokko": {
       "cap": 700,
-      "total": 10,
-      "under_cap": 4,
+      "total": 11,
+      "under_cap": 6,
       "file": "sunweb/country/marokko_under_700.json"
     },
     "Cyprus": {
       "cap": 700,
-      "total": 48,
-      "under_cap": 28,
+      "total": 49,
+      "under_cap": 29,
       "file": "sunweb/country/cyprus_under_700.json"
     },
     "Italië": {
@@ -46,25 +46,25 @@
     "Bulgarije": {
       "cap": 700,
       "total": 29,
-      "under_cap": 11,
+      "under_cap": 13,
       "file": "sunweb/country/bulgarije_under_700.json"
     },
     "Egypte": {
       "cap": 800,
       "total": 66,
-      "under_cap": 56,
+      "under_cap": 54,
       "file": "sunweb/country/egypte_under_800.json"
     },
     "Tunesië": {
       "cap": 700,
       "total": 54,
-      "under_cap": 41,
+      "under_cap": 42,
       "file": "sunweb/country/tunesi_under_700.json"
     },
     "Kaapverdië": {
       "cap": 700,
       "total": 7,
-      "under_cap": 2,
+      "under_cap": 3,
       "file": "sunweb/country/kaapverdi_under_700.json"
     }
   }
