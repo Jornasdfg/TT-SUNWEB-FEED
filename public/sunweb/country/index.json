@@ -1,28 +1,28 @@
 {
-  "last_updated": "2026-11-16T13:39:35.316Z",
+  "last_updated": "2026-11-19T14:26:34.195Z",
   "countries": {
     "Portugal": {
       "cap": 700,
-      "total": 149,
-      "under_cap": 122,
+      "total": 155,
+      "under_cap": 130,
       "file": "sunweb/country/portugal_under_700.json"
     },
     "Spanje": {
       "cap": 600,
-      "total": 603,
-      "under_cap": 347,
+      "total": 608,
+      "under_cap": 386,
       "file": "sunweb/country/spanje_under_600.json"
     },
     "Turkije": {
       "cap": 700,
-      "total": 382,
-      "under_cap": 306,
+      "total": 384,
+      "under_cap": 324,
       "file": "sunweb/country/turkije_under_700.json"
     },
     "Griekenland": {
       "cap": 650,
-      "total": 720,
-      "under_cap": 541,
+      "total": 733,
+      "under_cap": 570,
       "file": "sunweb/country/griekenland_under_650.json"
     },
     "Marokko": {
@@ -34,32 +34,32 @@
     "Cyprus": {
       "cap": 700,
       "total": 51,
-      "under_cap": 32,
+      "under_cap": 35,
       "file": "sunweb/country/cyprus_under_700.json"
     },
     "Italië": {
       "cap": 700,
       "total": 26,
-      "under_cap": 18,
+      "under_cap": 20,
       "file": "sunweb/country/itali_under_700.json"
-    },
-    "Egypte": {
-      "cap": 800,
-      "total": 67,
-      "under_cap": 59,
-      "file": "sunweb/country/egypte_under_800.json"
     },
     "Bulgarije": {
       "cap": 700,
       "total": 37,
-      "under_cap": 19,
+      "under_cap": 18,
       "file": "sunweb/country/bulgarije_under_700.json"
     },
     "Tunesië": {
       "cap": 700,
       "total": 56,
-      "under_cap": 49,
+      "under_cap": 51,
       "file": "sunweb/country/tunesi_under_700.json"
+    },
+    "Egypte": {
+      "cap": 800,
+      "total": 67,
+      "under_cap": 55,
+      "file": "sunweb/country/egypte_under_800.json"
     },
     "Kaapverdië": {
       "cap": 700,
@@ -69,8 +69,8 @@
     },
     "Kroatië": {
       "cap": 700,
-      "total": 1,
-      "under_cap": 0,
+      "total": 21,
+      "under_cap": 2,
       "file": "sunweb/country/kroati_under_700.json"
     }
   }
